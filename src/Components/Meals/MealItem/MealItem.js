@@ -1,3 +1,4 @@
+import MealForm from "./MealForm";
 import style from "./MealItem.module.css";
 
 const MealItem = (props) => {
@@ -9,7 +10,9 @@ const MealItem = (props) => {
         <div className={style.description}>{props.description}</div>
         <div className={style.price}>{price}</div>
       </div>
-      <div>form here</div>
+      <div>
+        <MealForm id={props.id} />
+      </div>
     </li>
   );
 };
