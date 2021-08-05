@@ -1,10 +1,10 @@
 import CartIcon from "./CartIcon";
 import style from "./HeaderCartBtn.module.css";
 
-const HeaderCartBtn = () => {
+const HeaderCartBtn = (props) => {
   const btnClasses = style.button + " " + style.bump;
   return (
-    <button className={btnClasses}>
+    <button className={btnClasses} onClick={props.onShowCart}>
       <span className={style.icon}>
         <CartIcon />
       </span>

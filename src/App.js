@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import "./App.css";
 import Cart from "./Components/Cart/Cart";
 
@@ -7,10 +7,20 @@ import Meals from "./Components/Meals/Meals";
 import PromoBanner from "./Components/PromoBanner/PromoBanner";
 
 function App() {
+  const [isCartVisible, setCartVisibility] = useState(false);
+
+  const hideCartHandler = (event) => {
+    setCartVisibility(false);
+  };
+
+  const showCartHandler = (event) => {
+    setCartVisibility(true);
+  };
+
   return (
     <Fragment>
-      <Header />
-      <Cart />
+      <Header onShowCart={showCartHandler} />
+      {isCartVisible && <Cart onClose={hideCartHandler} />}
       <main>
         <PromoBanner />
         <Meals />

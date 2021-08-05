@@ -12,7 +12,7 @@ const Cart = (props) => {
   ];
 
   return (
-    <Modal>
+    <Modal onClose={props.onClose}>
       <div className={style["cart-items"]}>
         {cartItems.map((item) => {
           return (
@@ -29,7 +29,9 @@ const Cart = (props) => {
         <span>35.43</span>
       </div>
       <div className={style.actions}>
-        <button className={style["button--alt"]}>Cancel</button>
+        <button className={style["button--alt"]} onClick={props.onClose}>
+          Cancel
+        </button>
         <button className={style["button"]}>Order</button>
       </div>
     </Modal>
