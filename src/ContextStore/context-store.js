@@ -14,14 +14,17 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
+  let updatedItems = [...state.items];
+
   if (action.type === "ADD") {
     const updatingItemIndex = state.items.findIndex(
       (item) => action.data.id === item.id
     );
-    let updatedItems = [...state.items];
 
     if (updatingItemIndex >= 0) {
-      updatedItems[updatingItemIndex].amount += +action.data.amount;
+      console.log(updatedItems[updatingItemIndex].amount);
+      console.log(action.data.amount);
+      updatedItems[updatingItemIndex].amount += action.data.amount;
     } else {
       updatedItems.push(action.data);
       // updatedItems = state.items.concat(action.data);
@@ -29,6 +32,26 @@ const cartReducer = (state, action) => {
 
     const updatedTotalPrice =
       state.totalPrice + action.data.amount * action.data.price;
+
+    return {
+      items: updatedItems,
+      totalPrice: updatedTotalPrice,
+    };
+  }
+
+  if (action.type === "REMOVE") {
+    const updatingItemIndex = state.items.findIndex(
+      (item) => action.id === item.id
+    );
+
+    const updatedTotalPrice =
+      state.totalPrice - updatedItems[updatingItemIndex].price;
+
+    if (updatedItems[updatingItemIndex].amount > 1) {
+      updatedItems[updatingItemIndex].amount--;
+    } else {
+      updatedItems.splice(updatingItemIndex, 1);
+    }
 
     return {
       items: updatedItems,
@@ -49,7 +72,9 @@ const CartProvider = (props) => {
     dispatchCartAction({ type: "ADD", data: item });
   };
 
-  const removeItemFromCart = () => {};
+  const removeItemFromCart = (id) => {
+    dispatchCartAction({ type: "REMOVE", id: id });
+  };
 
   const cartInfo = {
     items: cartState.items,

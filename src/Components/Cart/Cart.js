@@ -8,6 +8,14 @@ const Cart = (props) => {
   const useCartContext = useContext(cartContext);
   const hasCartItems = useCartContext.items.length > 0;
 
+  const addItemHandler = (item) => {
+      useCartContext.addItem({...item, amount: 1});
+  };
+
+  const removeItemHandler = (id) => {
+    useCartContext.removeItem(id);
+  };
+
   return (
     <Modal onClose={props.onClose}>
       <div className={style["cart-items"]}>
@@ -18,6 +26,8 @@ const Cart = (props) => {
               name={item.name}
               amount={item.amount}
               price={item.price}
+              onAdd={addItemHandler.bind(null, item)}
+              onRemove={removeItemHandler.bind(null, item.id)}
             />
           );
         })}
