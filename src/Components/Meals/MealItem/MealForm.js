@@ -1,13 +1,19 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Input from "../../UI/Input";
 import style from "./MealForm.module.css";
 
 const MealForm = (props) => {
   const inputRef = useRef();
+  const [buttonVal, setButtonVal] = useState("+ Add");
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    props.onFormSubmit(inputRef.current.value);
+    props.onFormSubmit(+inputRef.current.value);
+    setButtonVal("Added");
+
+    setTimeout(() => {
+      setButtonVal("+ Add");
+    }, 200);
   };
 
   return (
@@ -24,7 +30,7 @@ const MealForm = (props) => {
           defaultValue: 1,
         }}
       />
-      <button>+ Add</button>
+      <button>{buttonVal}</button>
     </form>
   );
 };

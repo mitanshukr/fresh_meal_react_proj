@@ -11,10 +11,15 @@
   padding: 0.25rem 2rem;
   border-radius: 20px;
   font-weight: bold;
+  width: 110px;
 }
 
 .form button:hover,
 .form button:active {
   background-color: #641e03;
   border-color: #641e03;
+}
+
+.form button:active {
+  color: rgb(255, 152, 27);
 }

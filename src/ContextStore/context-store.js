@@ -23,8 +23,8 @@ const cartReducer = (state, action) => {
     if (updatingItemIndex >= 0) {
       updatedItems[updatingItemIndex].amount += +action.data.amount;
     } else {
-      // updatedItems = state.items.concat(action.data);
       updatedItems.push(action.data);
+      // updatedItems = state.items.concat(action.data);
     }
 
     const updatedTotalPrice =
