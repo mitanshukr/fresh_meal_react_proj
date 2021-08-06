@@ -1,10 +1,10 @@
-import { Fragment, useState } from "react";
-import "./App.css";
-import Cart from "./Components/Cart/Cart";
+import { useState } from "react";
 
 import Header from "./Components/Layout/Header";
+import Cart from "./Components/Cart/Cart";
 import Meals from "./Components/Meals/Meals";
 import PromoBanner from "./Components/PromoBanner/PromoBanner";
+import { CartProvider } from "./ContextStore/context-store";
 
 function App() {
   const [isCartVisible, setCartVisibility] = useState(false);
@@ -18,14 +18,14 @@ function App() {
   };
 
   return (
-    <Fragment>
+    <CartProvider>
       <Header onShowCart={showCartHandler} />
       {isCartVisible && <Cart onClose={hideCartHandler} />}
       <main>
         <PromoBanner />
         <Meals />
       </main>
-    </Fragment>
+    </CartProvider>
   );
 }
 

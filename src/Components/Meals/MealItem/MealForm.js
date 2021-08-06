@@ -1,20 +1,19 @@
-// import { useRef, useState } from "react";
+import { useRef } from "react";
 import Input from "../../UI/Input";
 import style from "./MealForm.module.css";
 
 const MealForm = (props) => {
-  // const [mealCount, setMealCount] = useState(1);
-  // const inputRef = useRef();
+  const inputRef = useRef();
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    //   const mealCount = inputRef.current.value;
-    //   console.log(mealCount);
+    props.onFormSubmit(inputRef.current.value);
   };
 
   return (
     <form className={style.form} onSubmit={formSubmitHandler}>
       <Input
+        ref={inputRef}
         label="Amount"
         input={{
           type: "number",
