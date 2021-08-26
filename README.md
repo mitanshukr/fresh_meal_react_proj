@@ -17,3 +17,5 @@ This is a React practice project built to brush-up the intermediate and Advanced
 5. JavaScript Functions and Logics
 
 Thanks!
+
+Project Idea by: Academind
